@@ -74,7 +74,7 @@ LinkedList.prototype.insertAt = function(data, index){
         return;
     }
     // If new node needs to be inserted before the head
-    if(index == 0){
+    if(index == 0){cra
         this.head = new Node(data, this.head);
         return;
     }
@@ -156,17 +156,22 @@ LinkedList.prototype.printListData = function() {
 }
 
 LinkedList.prototype.reverseList = function() {
-    let prev = null;
-    let curr = this.head; //a
-    let next = null; 
+    let previous = null;
+    let current = this.head; //a 
+    let tmp;
 
-    while (curr != null){
-        next = curr.next; //save next
-        console.log(next);
-        curr.next = prev; // reverse
-        prev = curr; // advance prev and curr
-        curr = next; // advance prev and curr
+    while (current != null){          
+
+        tmp = current.next;       
+        current.next = previous;           
+        previous = current;            
+        current = tmp;   
+
+        iterations++;
+        console.log(list);
+        list.printListData ();
     }
+    
 }
 
 LinkedList.prototype.removeDups = function() {
@@ -217,23 +222,112 @@ LinkedList.prototype.kthToLastElement = function(pos){
     }
 
     console.log("The element at the " + pos + "th position from last is " + current.element);
-
-   
 }
 
-list.insertAtBeggining("a");
-list.insertAtEnd("d");
-list.insertAt("b", 1);
-list.insertAt("c", 2);
-list.insertAtEnd("e");
-list.insertAtEnd("a");
-list.insertAtEnd("b");
-list.insertAtEnd("c");
-list.insertAtEnd("d");
+LinkedList.prototype.delMiddleNode = function(index){
+
+    let current = this.head;
+
+    let i = 1;
+
+    while (i < index - 1){
+        current = current.next;
+        i++;
+    }
+    console.log(current);
+    
+    current.data = current.next.data;
+    current.next = current.next.next;
+
+}
+
+LinkedList.prototype.partition = function(data){
+
+    let current = this.head;
+
+    let lessStart = null;
+    let lessEnd = null;
+    let greaterStart = null;
+    let greaterEnd = null;
+
+    while (current != null){
+        if (current.element < data){
+            if (lessStart == null){
+                lessStart = current;
+                lessEnd = lessStart;
+            }
+            else{
+                lessEnd.next = current;
+                lessEnd = current;
+            }
+        }
+        if (current.element >= data){
+            if (greaterStart == null){
+                greaterStart = current;
+                greaterEnd = greaterStart;
+            }
+            else{
+                greaterEnd.next = current;
+                greaterEnd = current;
+            }
+        }
+        current = current.next
+    }
+    lessEnd.next = greaterStart;
+}
+
+LinkedList.prototype.sumLists = function(){
+    let current = this.head;
+    let firstNum = [];
+    let secondNum = [];
+
+    let i = 1;
+    while(current != null){
+        if (i <= 3){
+            firstNum.unshift(current.element);
+        }
+        else{
+            secondNum.unshift(current.element);
+        }
+        current = current.next;
+        i++;
+    }
+    current = this.head;
+
+    let sum = parseInt(firstNum.join(""), 10) + parseInt(secondNum.join(""), 10);
+    sum = sum.toString();
+    
+    for (let i = sum.length - 1; i > 0; i--){
+        current.element = sum[i];
+        current = current.next;
+    }
+    current.next = null;
+    console.log(sum);
+}
+
+list.insertAtBeggining(1);
+list.insertAtEnd(4);
+list.insertAt(2, 1);
+list.insertAt(3, 2);
+list.insertAtEnd(5);
+//list.insertAtEnd(1);
+// list.insertAtEnd(2);
+// list.insertAtEnd(3);
+// list.insertAtEnd(4);
 
 //list.removeDups();
-//console.log(list);
 //list.kthToLastElement(3);
+//list.delMiddleNode(5);
+//list.partition(3);
+//list.sumLists();
+
 list.printListData ();
+
+list.reverseList();
+
+
+// console.log(list);
+// list.printListData ();
+
 
 
