@@ -41,10 +41,12 @@ Graph.prototype.BFS = function(startNode){
     let visited = {};
     let queue = new Queue();
 
+    // We set starting node as visited so we dont visit again
     visited[startNode] = true;
+
     queue.enqueue(startNode);
 
-    while (!queue.isEmpty()){
+    while (!queue.isEmpty()){ //
         let getQueueElement = queue.dequeue();
 
         console.log(getQueueElement);
@@ -53,7 +55,9 @@ Graph.prototype.BFS = function(startNode){
 
         for (let i in getList) {
             let neigh = getList[i];
-            if (!visited[neigh]) {
+            //If visited list doesnt have current vertex, we add it and mark
+            // it as visited, as well as add it to the queue
+            if (!visited[neigh]) { 
                 visited[neigh] = true;
                 queue.enqueue(neigh);       
             }
@@ -68,11 +72,17 @@ Graph.prototype.DFS = function(startNode){
 }
 
 Graph.prototype.DFSutil = function(vert, visited){
+    //We set current vertex as visited first so we don't visit this index again in the future
     visited[vert] = true;
     console.log(vert);
 
+    //We get the neighbours for the current vertex
     let getNeighbours = this.adjList.get(vert);
 
+    //We iterate through the vertex's nieghbours, we check if the current
+    // neighbour has been visited before, that is if it's in the visited array
+    // and if it's not, we now call this function again to check for this neighbour's
+    // neighbours
     for (let i in getNeighbours){
         let getElement = getNeighbours[i];
         if(!visited[getElement]){

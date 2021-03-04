@@ -27,11 +27,11 @@ Queue.prototype.isEmpty = function(){
 
 let queue = new Queue();
 
-queue.add("first");
-queue.add("second");
-queue.add("third");
+queue.enqueue("first");
+queue.enqueue("second");
+queue.enqueue("third");
 
-queue.remove();
+queue.dequeue();
 
 queue.peek();
 queue.isEmpty();
