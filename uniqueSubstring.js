@@ -1,6 +1,5 @@
-function checkPermutation (){
+function isUnique(n){
 
-    n = "asdfghjkll";
     let charSet = [];
 
     for (let i = 0; i < n.length; i++)
@@ -20,4 +19,4 @@ function checkPermutation (){
 
 
 
-checkPermutation();
+isUnique("asdfghjkl");

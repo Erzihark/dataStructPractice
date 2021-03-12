@@ -230,6 +230,8 @@ LinkedList.prototype.delMiddleNode = function(index){
 
     let i = 1;
 
+    //we simply move to the specified index, and override the current node's
+    //values to the current one
     while (i < index - 1){
         current = current.next;
         i++;
@@ -244,7 +246,8 @@ LinkedList.prototype.delMiddleNode = function(index){
 LinkedList.prototype.partition = function(data){
 
     let current = this.head;
-
+    // We divide the nodes in half, with first half being nodes with values
+    //less than "data" and the other half with that value + all larger values
     let lessStart = null;
     let lessEnd = null;
     let greaterStart = null;
@@ -282,6 +285,7 @@ LinkedList.prototype.sumLists = function(){
     let secondNum = [];
 
     let i = 1;
+    //We put the numbers one by one in an array, but in reverse order
     while(current != null){
         if (i <= 3){
             firstNum.unshift(current.element);
@@ -292,11 +296,15 @@ LinkedList.prototype.sumLists = function(){
         current = current.next;
         i++;
     }
+    //we get back to the head of the list
     current = this.head;
 
+    //We convert the numbers in the array to integers, then add them and make
+    //them a string again
     let sum = parseInt(firstNum.join(""), 10) + parseInt(secondNum.join(""), 10);
     sum = sum.toString();
     
+    //Then we iterate through the resulting array and put each value in a node
     for (let i = sum.length - 1; i > 0; i--){
         current.element = sum[i];
         current = current.next;

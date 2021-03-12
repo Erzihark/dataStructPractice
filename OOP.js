@@ -44,12 +44,26 @@ class Shape{
         this.sides = sides;
         this.sideLength = sideLength;
     }
+    calcPerimeter(){
+        console.log("This " + this.name + "\'s perimeter is " + (this.sides * this.sideLength))
+    }
 }
 
-Shape.prototype.calcPerimeter = function(){
-    console.log("This " + this.name + "\'s perimeter is " + (this.sides * this.sideLength))
+class Square extends Shape{
+    constructor(sideLength){
+       this.sides = 4;
+       this.name = "square" 
+       super(sideLength);
+    }
+    calcArea(){
+        console.log("This square's area is " + this.sides * this.sideLength);
+    }
 }
 
-let shape = new Shape("Square", 4, 6);
-shape.calcPerimeter();
+
+
+
+let square = new Square(5);
+square.calcArea();
+square.calcPerimeter();
 
