@@ -1,3 +1,11 @@
+/*
+Given a string as input, return the shortest between that string, or its compressed version.
+The string is composed exclusively of unordered letters that ONLY repeat next to each other (you can't have a string like 'aaaabca', because 'a' doesn't repeat next to another 'a').
+
+Compresion algorithm: 
+It converts same letter chains into that letter, followed by how many times it repeats (Ex: eerqqqw -> e2r1q3w1, zzzzzzzzzzca -> z10c1a1, jjjddcc -> j3d2c2)
+*/
+
 function stringCompression(str){
     finalLength = countCompression(str);
     console.log(finalLength, " ", str.length);
